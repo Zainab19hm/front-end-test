@@ -1,0 +1,72 @@
+<header x-data="{ openMenu: null  }" class="bg-transparent absolute w-full top-0 font-hacen z-50">
+    <!--! first line of header  -->
+    <div class="top-header mt-7.25 flex justify-between items-center container w-full ">
+        <img src="/images/logo-spu.png" alt="" class="logo w-70.25 h-14.75">
+
+        <div class="flex items-center gap-5 text-spu-blue">
+            <!-- search button -->
+            <button class="fas fa-search cursor-pointer text-xl text-gray-600 "></button>
+            <!-- lang change -->
+            <div x-data>
+                <button @click="$store.app.setLang($store.app.currentLang === 'en' ? 'ar' : 'en')"
+                    class="inline-flex gap-2 items-center bg-transparent  font-hacen font-bold text-[18px] text-spu-blue hover:text-spu-red focus:outline-none transition-colors duration-300">
+                    <i class="fas fa-globe"></i>
+
+                    <span x-text="$store.app.currentLang === 'ar' ? 'English' : 'العربية'"
+                        class="font-hacen font-bold text-[18px]"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!--! end first line  -->
+
+
+    <!--! second line of header -->
+    <div class="bottom-header container mt-4  ">
+        <nav x-data="{ openMenu: null }" class="bg-transparent font-hacen">
+            <div class="main-container flex items-center justify-center py-3 ">
+
+                <ul class="flex items-center gap-7 text-spu-blue font-bold text-[24px]">
+                    <template x-for="item in $store.navigation.menuItems" :key="item.id">
+                        <li class="relative py-1" @mouseenter="openMenu = item.id" @mouseleave="openMenu = null">
+                            <a href="#" class="flex items-center gap-1 hover:text-spu-red transition">
+                                <span x-text="$store.app.currentLang === 'ar' ? item.labelAr : item.labelEn"></span>
+
+                                <template x-if="item.hasDropdown">
+                                    <svg class="w-5 h-5 stroke-spu-red transition-transform"
+                                        :class="openMenu === item.id ? 'rotate-180' : ''" fill="none"
+                                        stroke="currentColor" viewBox="0 0 26 26">
+                                        <path d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </template>
+                            </a>
+
+                            <div x-show="item.hasDropdown && openMenu === item.id"
+                                class="absolute top-full left-0 w-60 bg-white shadow-xl border-t-4 border-spu-red py-2 z-50 rounded-b-md">
+                                <template x-for="child in item.children">
+                                    <a :href="child.url"
+                                        class="block px-4 py-2 hover:bg-gray-50 text-sm font-semibold text-spu-blue hover:text-spu-red transition"
+                                        x-text="$store.app.currentLang === 'ar' ? child.labelAr : child.labelEn"></a>
+                                </template>
+                            </div>
+                        </li>
+                    </template>
+                </ul>
+
+                <a href="#"
+                    class="bg-spu-red text-white mx-5 px-4 py-2 rounded-[16px] flex items-center gap-2 hover:bg-opacity-90 transition transform hover:scale-105 shadow-md active:scale-95">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.825-2.998 12.083 12.083 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222">
+                        </path>
+                    </svg>
+                    <span class="font-bold uppercase tracking-wider text-[13px]"
+                        x-text="$store.app.currentLang === 'ar' ? 'قدم الآن' : 'Apply Now'"></span>
+                </a>
+
+            </div>
+        </nav>
+    </div>
+    <!--! end second line of header -->
+</header>

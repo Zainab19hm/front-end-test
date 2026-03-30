@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+/* 1. تعريف الخط الأساسي للجامعة */
+@font-face {
+    font-family: 'HacenTunisia';
+    src: url('/fonts/HacenTunisia-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HacenTunisia';
+    src: url('/fonts/HacenTunisia-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@theme {
+    /* font */
+    --font-hacen: "HacenTunisia", sans-serif;
+
+    /* main colors */
+    --color-spu-blue: #202759;
+    /* Very Dark Blue [cite: 14, 16, 17, 18] */
+    --color-spu-red: #6f1616;
+    /* Very Dark Red [cite: 7, 8, 10, 12] */
+
+    /* 4. ألوان الكليات (حسب الملف) */
+    --color-med: #BC2428;
+    /* كلية الطب - Strong Red [cite: 23, 25, 26] */
+    --color-dent: #1F77B4;
+    /* طب الأسنان - Strong Blue [cite: 32, 33] */
+    --color-pharm: #5ebe7b;
+    /* الصيدلة - Moderate Cyan [cite: 37, 63, 64] */
+    --color-petro: #5EBE7B;
+    /* هندسة البترول - Very Dark Cyan [cite: 46, 65, 66, 67] */
+    --color-admin: #caa949;
+    /* العلوم الإدارية - Moderate Orange [cite: 51, 68, 69, 70] */
+    --color-const: #7f8c8d;
+    /* هندسة البناء - Dark Grayish Cyan [cite: 56, 71, 72] */
+    --color-ai: #683695;
+    /* الذكاء الاصطناعي - Dark Moderate Violet [cite: 61, 73, 74] */
+}
+
+
+
+@layer components {
+    .container {
+        @apply px-20 mx-auto;
+        min-width: 1500px;
+    }
+}

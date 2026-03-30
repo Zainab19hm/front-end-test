@@ -1,0 +1,39 @@
+<section x-data class="relative h-[800px] w-full overflow-hidden font-hacen bg-spu-blue">
+
+    <template x-for="(img, index) in $store.hero.images" :key="index">
+        <div x-show="$store.hero.currentIndex === index" x-transition:enter="transition ease-out duration-1000"
+            x-transition:enter-start="opacity-0 scale-110" x-transition:enter-end="opacity-100 scale-100"
+            x-transition:leave="transition ease-in duration-1000" x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0" class="absolute inset-0">
+
+            <img :src="img" class="w-full  object-cover">
+            <div class="absolute inset-0 bg-black/10"></div>
+        </div>
+    </template>
+
+    <div class="main-container relative z-10 h-full flex items-center text-white container">
+        <div class="max-w-3xl ">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight text-[50px] "
+                x-text="$store.app.currentLang === 'ar' ? $store.hero.titleAr : $store.hero.titleEn">
+            </h1>
+
+            <p class="mx-5 mb-10 text-[24px]  w-[500px]"
+                x-text="$store.app.currentLang === 'ar' ? $store.hero.subtitleAr : $store.hero.subtitleEn">
+            </p>
+
+            <div class="flex flex-wrap gap-4">
+                <a href="#"
+                    class="bg-spu-red text-white px-8 py-4 rounded-[12px] font-bold hover:scale-105 transition shadow-lg">
+                    <span
+                        x-text="$store.app.currentLang === 'ar' ? $store.hero.primaryBtnAr : $store.hero.primaryBtnEn"></span>
+                </a>
+                <a href="#"
+                    class="border-2 border-white text-white px-8 py-4 rounded-[12px] font-bold hover:bg-white hover:text-spu-blue transition">
+                    <span
+                        x-text="$store.app.currentLang === 'ar' ? $store.hero.secondaryBtnAr : $store.hero.secondaryBtnEn"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</section>
